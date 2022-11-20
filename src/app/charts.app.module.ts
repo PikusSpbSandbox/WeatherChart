@@ -19,8 +19,11 @@ import { HttpClientModule } from "@angular/common/http";
   providers: [],
   bootstrap: [ChartsAppComponent]
 })
-export class ChartsAppModule {
-  static forRoot(): ModuleWithProviders<ChartsAppModule> {
+export class ChartsAppModule { }
+
+@NgModule({})
+export class ChartsSharedAppModule {
+  static forRoot(): ModuleWithProviders<ChartsSharedAppModule> {
     return {
       ngModule: ChartsAppModule,
       providers: []
