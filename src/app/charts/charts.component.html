@@ -1,12 +1,25 @@
-<ngb-carousel>
-  <ng-template ngbSlide>
-    <bar-chart [labels]="labels.capitals" [values]="values.capitals" [title]="'World capitals temperature, C'"></bar-chart>
-  </ng-template>
-  <ng-template ngbSlide>
-    <bar-chart [labels]="labels.rus" [values]="values.rus" [title]="'Russian cities temperature, C'"></bar-chart>
-  </ng-template>
-  <ng-template ngbSlide>
-    <bar-chart [labels]="labels.favourite" [values]="values.favourite" [title]="'Special cities temperature, C'"></bar-chart>
-  </ng-template>
-</ngb-carousel>
+<carousel
+  [height]="400"
+  [cellsToShow]="1"
+  [autoplay]="true"
+  [autoplayInterval]="3000">
+  <bar-chart
+    class="carousel-cell"
+    [labels]="labels.capitals"
+    [values]="values.capitals"
+    [title]="'World capitals temperature, C'">
+  </bar-chart>
+  <bar-chart
+    class="carousel-cell"
+    [labels]="labels.rus"
+    [values]="values.rus"
+    [title]="'Russian cities temperature, C'">
+  </bar-chart>
+  <bar-chart
+    class="carousel-cell"
+    [labels]="labels.favourite"
+    [values]="values.favourite"
+    [title]="'Other cities temperature, C'">
+  </bar-chart>
+</carousel>
 
