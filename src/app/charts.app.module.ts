@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ChartsAppComponent } from './charts.app.component';
@@ -20,3 +20,13 @@ import { HttpClientModule } from "@angular/common/http";
   bootstrap: [ChartsAppComponent]
 })
 export class ChartsAppModule { }
+
+@NgModule({})
+export class ChartsSharedModule {
+  static forRoot(): ModuleWithProviders<ChartsSharedModule> {
+    return {
+      ngModule: ChartsAppModule,
+      providers: []
+    }
+  }
+}
