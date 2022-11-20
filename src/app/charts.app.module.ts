@@ -19,11 +19,8 @@ import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
   providers: [],
   bootstrap: [ChartsAppComponent]
 })
-export class ChartsAppModule { }
-
-@NgModule({})
-export class ChartsSharedModule {
-  static forRoot(): ModuleWithProviders<ChartsSharedModule> {
+export class ChartsAppModule {
+  static forRoot(): ModuleWithProviders<ChartsAppModule> {
     return {
       ngModule: ChartsAppModule,
       providers: []
