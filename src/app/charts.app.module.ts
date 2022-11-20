@@ -16,6 +16,9 @@ import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
     BrowserModule,
     HttpClientModule
   ],
+  exports: [
+    ChartsAppComponent
+  ],
   providers: [],
   bootstrap: [ChartsAppComponent]
 })
