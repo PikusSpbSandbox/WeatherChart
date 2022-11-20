@@ -16,6 +16,9 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserModule,
     HttpClientModule
   ],
+  exports: [
+    ChartsAppComponent
+  ],
   providers: [],
   bootstrap: [ChartsAppComponent]
 })
