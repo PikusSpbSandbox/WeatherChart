@@ -5,6 +5,7 @@ import { ChartsAppComponent } from './charts.app.component';
 import { ChartsComponent } from './charts/charts.component';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { HttpClientModule } from "@angular/common/http";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HttpClientModule } from "@angular/common/http";
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   exports: [
     ChartsAppComponent
