@@ -40,16 +40,18 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
   ngOnChanges() {
     if (this.chart) {
       const data = this.labels.reduce((memo: any, label, index) => {
-        memo[this.values[index] || index] = label;
+        if (memo[this.values[index]]) {
+          memo[this.values[index]] = [memo[this.values[index] || index]].concat([label]);
+        } else {
+          memo[this.values[index]] = label;
+        }
         return memo;
       }, {});
 
       // Sort by temperature values
-      const values = Object.keys(data).sort((a: string, b:string) => {
-        return Number(a) - Number(b);
-      }).map(value => Number(value));
-
-      const labels = values.map(value => data[value]);
+      const values = this.values.sort((a, b) => a - b);
+      // Make labels unique
+      const labels = [...new Set(values.map(value => data[value]).flat())];
 
       this.chart.data.labels = labels;
       this.chart.data.datasets[0].data = values as number[];
@@ -71,13 +73,13 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
           color = COLORS.lightGreen;
         } else if (value > 12) {
           color = COLORS.green;
-        } else if (value > 9) {
-          color = COLORS.lightBlue;
         } else if (value > 0) {
-          color = COLORS.blue;
+          color = COLORS.lightBlue;
         } else if (value > -5) {
-          color = COLORS.darkBlue;
+          color = COLORS.blue;
         } else if (value > -10) {
+          color = COLORS.darkBlue;
+        } else if (value > -20) {
           color = COLORS.darkestBlue;
         } else {
           color = COLORS.black;
