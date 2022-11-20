@@ -1,10 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
 
 import { ChartsAppComponent } from './charts.app.component';
 import { ChartsComponent } from './charts/charts.component';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
+import { HttpClientModule } from "@angular/common/http";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   exports: [
     ChartsAppComponent

@@ -3,7 +3,8 @@ import {
   ElementRef,
   AfterViewInit,
   Input,
-  ViewChild, OnChanges, ViewEncapsulation
+  ViewChild,
+  OnChanges
 } from '@angular/core';
 import Chart from 'chart.js/auto';
 
@@ -32,6 +33,7 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
   private canvas: ElementRef;
   private chart: Chart;
 
+  @Input() title: string;
   @Input() labels: string[];
   @Input() values: number[];
 
@@ -90,14 +92,15 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit() {
     Chart.defaults.font.size = 15;
     Chart.defaults.font.family = 'Verdana';
-    Chart.defaults.responsive = false;
+    Chart.defaults.responsive = true;
+    Chart.defaults.maintainAspectRatio = false;
     this.chart = new Chart(this.canvas.nativeElement, {
       type: 'bar',
       data: {
         labels: [],
         datasets: [
           {
-            label: 'Temperature, C',
+            label: this.title,
             data: []
           }
         ]
