@@ -59,19 +59,19 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
       const colors = new Array(labels.length).fill('').map((item, index) => {
         const value = values[index];
         let color;
-        if (value > 30) {
+        if (value > 35) {
           color = COLORS.red
-        } else if (value > 27) {
+        } else if (value > 33) {
           color = COLORS.lightRed;
-        } else if (value > 24) {
+        } else if (value > 30) {
           color = COLORS.orange;
-        } else if (value > 21) {
+        } else if (value > 27) {
           color = COLORS.lightOrange;
-        } else if (value > 18) {
+        } else if (value > 25) {
           color = COLORS.yellow;
-        } else if (value > 15) {
+        } else if (value > 23) {
           color = COLORS.lightGreen;
-        } else if (value > 12) {
+        } else if (value > 15) {
           color = COLORS.green;
         } else if (value > 0) {
           color = COLORS.lightBlue;
