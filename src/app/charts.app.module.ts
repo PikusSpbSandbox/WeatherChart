@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { IvyCarouselModule } from 'carousel-angular';
 
 import { ChartsAppComponent } from './charts.app.component';
 import { ChartsComponent } from './charts/charts.component';
