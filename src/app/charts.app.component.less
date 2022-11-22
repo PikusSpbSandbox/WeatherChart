@@ -2,29 +2,3 @@ div {
   padding: 0;
 }
 
-:host ::ng-deep {
-  .carousel-arrow {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    height: 400px !important;
-    width: 50px;
-    margin-top: -200px !important;
-    transition: opacity 0.1s ease-in-out;
-    opacity: 0 !important;
-
-    &.carousel-arrow-disabled:hover {
-      opacity: 0.1 !important;
-    }
-
-    &:hover {
-      opacity: 0.5 !important;
-    }
-  }
-
-  .carousel-arrow-prev {
-    margin-right: 40px;
-  }
-  .carousel-arrow-next {
-    margin-left: 40px;
-  }
-}
