@@ -36,6 +36,7 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
   @Input() title: string;
   @Input() labels: string[];
   @Input() values: number[];
+  @Input() indexAxis: "y" | "x" | undefined = 'y';
 
   ngOnChanges() {
     if (this.chart) {
@@ -108,7 +109,7 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
         ]
       },
       options: {
-        indexAxis: 'y'
+        indexAxis: this.indexAxis
       }
     });
   }
