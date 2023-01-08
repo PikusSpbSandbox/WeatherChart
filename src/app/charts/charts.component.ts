@@ -31,7 +31,7 @@ export class ChartsComponent {
   }
 
   private requestWeather(): Promise<any> {
-    const url = `/assets/scripts/weather-nodejs-proxy.php`;
+    const url = `/assets/scripts/weather-nodejs-proxy.php?rnd=` + Date.now();
     return this.http.get(url).toPromise();
   }
 }
