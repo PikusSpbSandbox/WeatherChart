@@ -36,23 +36,29 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
   @Input() title: string;
   @Input() labels: string[];
   @Input() values: number[];
+  @Input() sort: boolean = true;
   @Input() indexAxis: "y" | "x" | undefined = 'y';
 
   ngOnChanges() {
     if (this.chart) {
-      const data = this.labels.reduce((memo: any, label, index) => {
-        if (memo[this.values[index]]) {
-          memo[this.values[index]] = [memo[this.values[index] || index]].concat([label]);
-        } else {
-          memo[this.values[index]] = label;
-        }
-        return memo;
-      }, {});
+      let labels = this.labels;
+      let values = this.values;
 
-      // Sort by temperature values
-      const values = this.values.sort((a, b) => a - b);
-      // Make labels unique
-      const labels = [...new Set(values.map(value => data[value]).flat())];
+      if (this.sort) {
+        const data = this.labels.reduce((memo: any, label, index) => {
+          if (memo[this.values[index]]) {
+            memo[this.values[index]] = [memo[this.values[index] || index]].concat([label]);
+          } else {
+            memo[this.values[index]] = label;
+          }
+          return memo;
+        }, {});
+
+        // Sort by temperature values
+        values = this.values.sort((a, b) => a - b);
+        // Make labels unique
+        labels = [...new Set(values.map(value => data[value]).flat())];
+      }
 
       this.chart.data.labels = labels;
       this.chart.data.datasets[0].data = values as number[];
