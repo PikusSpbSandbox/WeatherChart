@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
 const QUERY_INTERVAL = 1000 * 60 * 5;
@@ -9,6 +9,8 @@ const QUERY_INTERVAL = 1000 * 60 * 5;
   styleUrls: ['./charts.component.less']
 })
 export class ChartsComponent {
+  @Input() previewMode: boolean = false;
+
   labels: any = {};
   values: any = {};
 

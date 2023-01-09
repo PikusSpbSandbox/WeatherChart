@@ -1,32 +1,51 @@
-<carousel
-  [height]="450"
-  [cellsToShow]="1"
-  [autoplay]="true">
+<div>
+  <h1>Weather statistics charts</h1>
+
+  <p>
+    Simple weather statistics web app written on Angular 15 +
+    <a href="https://www.chartjs.org/" target="_blank">Chart.js</a>
+    charts library. <br>
+    Data is taken live from
+    <a href="https://open-meteo.com/en" target="_blank">open-meteo.com</a>
+    and sorted according to the temperature value
+    also with a highlighting with appropriate color.<br>
+    See <a href="https://github.com/PikusSpbSandbox/WeatherChart" target="_blank">source code</a>
+    on my <a href="https://github.com/PikusSpbSandbox" target="_blank">Github page</a>.
+
+  <h2>World capitals weather temperature now</h2>
   <bar-chart
     class="carousel-cell"
     [labels]="labels.capitals"
     [values]="values.capitals"
     [title]="'World capitals temperature, C'">
   </bar-chart>
-  <bar-chart
-    class="carousel-cell"
-    [labels]="labels.rus"
-    [values]="values.rus"
-    [title]="'Russian cities temperature, C'">
-  </bar-chart>
-  <bar-chart
-    class="carousel-cell"
-    [labels]="labels.favourite"
-    [values]="values.favourite"
-    [title]="'Other cities temperature, C'">
-  </bar-chart>
-  <bar-chart
-    class="carousel-cell"
-    [labels]="labels.average"
-    [values]="values.average"
-    [indexAxis]="'x'"
-    [sort]="false"
-    [title]="'Average daily temperature, C'">
-  </bar-chart>
-</carousel>
 
+  <div *ngIf="!previewMode">
+
+    <h2>Russian cities weather temperature now</h2>
+    <bar-chart
+      class="carousel-cell"
+      [labels]="labels.rus"
+      [values]="values.rus"
+      [title]="'Russian cities temperature, C'">
+    </bar-chart>
+
+    <h2>My favourite cities weather temperature now</h2>
+    <bar-chart
+      class="carousel-cell"
+      [labels]="labels.favourite"
+      [values]="values.favourite"
+      [title]="'Other cities temperature, C'">
+    </bar-chart>
+
+    <h2>Average weather temperature trend from the all above cities</h2>
+    <bar-chart
+      class="carousel-cell"
+      [labels]="labels.average"
+      [values]="values.average"
+      [indexAxis]="'x'"
+      [sort]="false"
+      [title]="'Average daily temperature, C'">
+    </bar-chart>
+  </div>
+</div>
