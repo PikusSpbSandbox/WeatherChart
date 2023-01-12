@@ -11,7 +11,7 @@
     $node_pid = exec("PORT=".NODE_PORT." node ".SCRIPT_PATH." ".NODE_PORT." >nodeout 2>&1 & echo $!");
     if ($node_pid > 0) {
       file_put_contents("nodepid", $node_pid, LOCK_EX);
-      sleep(1); // wait for node to spin up
+      sleep(10); // wait for node server to spin up
     } else {
       echo "Error while weather server start. Please see nodeout file for logs..";
       return;
