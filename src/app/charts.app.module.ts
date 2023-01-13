@@ -18,9 +18,10 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule,
     IvyCarouselModule
   ],
-  exports: [
-    ChartsAppComponent
-  ],
+    exports: [
+        ChartsAppComponent,
+        BarChartComponent
+    ],
   providers: [],
   bootstrap: [ChartsAppComponent]
 })

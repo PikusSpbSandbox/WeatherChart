@@ -1,12 +1,11 @@
 const express = require('express');
-const process = require('process');
 const https = require('https');
 const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
 app.use(cors());
-const port = process.argv[2] || 8181;
+const port = 8181;
 
 const weatherHistoryFile = __dirname + '/weather-history.json';
 const CITIES = {

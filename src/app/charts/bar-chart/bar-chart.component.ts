@@ -37,6 +37,7 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
   @Input() labels: string[] = [];
   @Input() values: number[] = [];
   @Input() sort: boolean = true;
+  @Input() colors: boolean = true;
   @Input() indexAxis: "y" | "x" | undefined = 'y';
 
   ngOnChanges() {
@@ -64,37 +65,39 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
         this.chart.data.labels = labels;
         this.chart.data.datasets[0].data = values as number[];
 
-        const colors = new Array(labels.length).fill('').map((item, index) => {
-          const value = values[index];
-          let color;
-          if (value > 35) {
-            color = COLORS.red
-          } else if (value > 33) {
-            color = COLORS.lightRed;
-          } else if (value > 30) {
-            color = COLORS.orange;
-          } else if (value > 27) {
-            color = COLORS.lightOrange;
-          } else if (value > 25) {
-            color = COLORS.yellow;
-          } else if (value > 23) {
-            color = COLORS.lightGreen;
-          } else if (value > 15) {
-            color = COLORS.green;
-          } else if (value > 0) {
-            color = COLORS.lightBlue;
-          } else if (value > -5) {
-            color = COLORS.blue;
-          } else if (value > -10) {
-            color = COLORS.darkBlue;
-          } else if (value > -20) {
-            color = COLORS.darkestBlue;
-          } else {
-            color = COLORS.black;
-          }
-          return color;
-        });
-        this.chart.data.datasets[0].backgroundColor = colors;
+        if (this.colors) {
+          const colors = new Array(labels.length).fill('').map((item, index) => {
+            const value = values[index];
+            let color;
+            if (value > 35) {
+              color = COLORS.red
+            } else if (value > 33) {
+              color = COLORS.lightRed;
+            } else if (value > 30) {
+              color = COLORS.orange;
+            } else if (value > 27) {
+              color = COLORS.lightOrange;
+            } else if (value > 25) {
+              color = COLORS.yellow;
+            } else if (value > 23) {
+              color = COLORS.lightGreen;
+            } else if (value > 15) {
+              color = COLORS.green;
+            } else if (value > 0) {
+              color = COLORS.lightBlue;
+            } else if (value > -5) {
+              color = COLORS.blue;
+            } else if (value > -10) {
+              color = COLORS.darkBlue;
+            } else if (value > -20) {
+              color = COLORS.darkestBlue;
+            } else {
+              color = COLORS.black;
+            }
+            return color;
+          });
+          this.chart.data.datasets[0].backgroundColor = colors;
+        }
 
         this.chart.update();
       } else {
