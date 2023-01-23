@@ -4,7 +4,8 @@ import {
   AfterViewInit,
   Input,
   ViewChild,
-  OnChanges
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import Chart from 'chart.js/auto';
 
@@ -39,8 +40,10 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
   @Input() sort: boolean = true;
   @Input() colors: boolean = true;
   @Input() indexAxis: "y" | "x" | undefined = 'y';
+  @Input() min: number;
+  @Input() max: number;
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     if (this.chart) {
       let labels = this.labels;
       let values = this.values;
@@ -114,6 +117,15 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
         ctx.fillText('Failed to load data. Please refresh page.', width / 2, height / 2);
         ctx.restore();
       }
+
+      if ('min' in changes && this.chart.options.scales && this.chart.options.scales['y']) {
+        this.chart.options.scales['y'].min = this.min;
+        this.chart.update();
+      }
+      if ('max' in changes && this.chart.options.scales && this.chart.options.scales['y']) {
+        this.chart.options.scales['y'].max = this.max;
+        this.chart.update();
+      }
     }
   }
 
@@ -134,7 +146,14 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
         ]
       },
       options: {
-        indexAxis: this.indexAxis
+        indexAxis: this.indexAxis,
+        scales: {
+          y: {
+            display: true,
+            min: this.min,
+            max: this.max
+          }
+        }
       }
     });
   }
