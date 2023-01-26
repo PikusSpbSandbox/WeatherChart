@@ -8,6 +8,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import Chart from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
 
 const COLORS = {
   darkestBlue: '#211166',
@@ -36,9 +37,10 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
 
   @Input() title: string;
   @Input() labels: string[] = [];
-  @Input() values: number[] = [];
+  @Input() values: any = [];
   @Input() sort: boolean = true;
   @Input() colors: boolean = true;
+  @Input() options: any;
   @Input() indexAxis: "y" | "x" | undefined = 'y';
   @Input() min: number;
   @Input() max: number;
@@ -60,13 +62,13 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
           }, {});
 
           // Sort by temperature values
-          values = this.values.sort((a, b) => a - b);
+          values = (this.values as number[]).sort((a, b) => a - b);
           // Make labels unique
-          labels = [...new Set(values.map(value => data[value]).flat())];
+          labels = [...new Set((values as number[]).map(value => data[value]).flat())];
         }
 
         this.chart.data.labels = labels;
-        this.chart.data.datasets[0].data = values as number[];
+        this.chart.data.datasets[0].data = values;
 
         if (this.colors) {
           const colors = new Array(labels.length).fill('').map((item, index) => {
@@ -134,6 +136,7 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
     Chart.defaults.font.family = 'Verdana';
     Chart.defaults.responsive = true;
     Chart.defaults.maintainAspectRatio = false;
+
     this.chart = new Chart(this.canvas.nativeElement, {
       type: 'bar',
       data: {
@@ -146,14 +149,8 @@ export class BarChartComponent implements AfterViewInit, OnChanges {
         ]
       },
       options: {
-        indexAxis: this.indexAxis,
-        scales: {
-          y: {
-            display: true,
-            min: this.min,
-            max: this.max
-          }
-        }
+        ...this.options,
+        indexAxis: this.indexAxis
       }
     });
   }
