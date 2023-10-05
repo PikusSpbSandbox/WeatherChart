@@ -8,7 +8,7 @@ export interface WeatherAbstractData {
   average: any[];
 }
 
-const WEATHER_DATA_URL = 'http://pikus.spb.ru:8181/weather';
+const WEATHER_DATA_URL = 'https://pikus.spb.ru/server/node-server.php?weather';
 const QUERY_INTERVAL = 1000 * 60 * 5;
 const emptyDataObjectStub = {
   rus: [],
